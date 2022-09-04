@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  app:
+    container_name: app
+    image: ubank
+    depends_on:
+      - mysqldb
+    build: .
+    ports:
+      - "8080:8090"
+    command: mvn clean spring-boot:run
+    links:
+      - mysqldb
+    environment:
+      DB_SERVER: mysqldb
+      MYSQL_DB: ubank
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123
+      MYSQL_PORT: 3306
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysql/mysql-server:5.7
+    volumes:
+      - /Users/umutatagun/Desktop/db:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=ubank
