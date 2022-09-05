@@ -16,7 +16,7 @@ public class Account extends BaseEntity {
     private Long account_id;
 
     @Column(nullable = false)
-    private BigInteger amount;
+    private Integer amount;
 
     @Column(nullable = false)
     private Bank bank;

@@ -30,11 +30,6 @@ public class AddressController {
         return new ResponseEntity<Address>(addressService.getAddressById(id), OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Address> createAddress(@RequestBody Address address) {
-        return new ResponseEntity<Address>(addressService.createAddress(address), CREATED);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Address> updateAddress(@PathVariable Long id, @RequestBody Address address) {
         return new ResponseEntity<Address>(addressService.updateAddress(id, address), CREATED);

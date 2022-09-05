@@ -23,4 +23,8 @@ public interface CustomerService {
     CustomerDto addAddressToCustomer(Long id, Address address);
 
     CustomerDto addAccountToCustomer(Long id, Account account);
+
+    List<Address> getCustomersAllAddresses(Long id);
+
+    Integer getCustomersAllAmount(Long id);
 }

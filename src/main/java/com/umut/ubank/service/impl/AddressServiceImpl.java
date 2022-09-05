@@ -4,6 +4,8 @@ import com.umut.ubank.exception.NotFoundException;
 import com.umut.ubank.model.Address;
 import com.umut.ubank.repository.AddressRepository;
 import com.umut.ubank.service.AddressService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 @Service
 public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
+    private final Logger logger = LoggerFactory.getLogger(AddressServiceImpl.class);
 
     public AddressServiceImpl(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;

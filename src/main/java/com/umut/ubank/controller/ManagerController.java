@@ -25,12 +25,12 @@ public class ManagerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Manager> getManagerById(Long id) {
+    public ResponseEntity<Manager> getManagerById(@PathVariable Long id) {
         return new ResponseEntity(this.managerService.getManagerById(id), OK);
     }
 
     @PostMapping
-    public ResponseEntity<Manager> createManager(Manager manager) {
+    public ResponseEntity<Manager> createManager(@RequestBody Manager manager) {
         return new ResponseEntity(this.managerService.createManager(manager), CREATED);
     }
 

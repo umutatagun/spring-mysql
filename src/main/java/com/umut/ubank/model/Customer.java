@@ -37,6 +37,10 @@ public class Customer extends BaseEntity {
     @JoinColumn(name = "cust_id", referencedColumnName = "id")
     private List<Account> accounts;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "man_id")
+    private Manager manager;
+
     public void addAddress(Address address) {
         this.addresses.add(address);
     }

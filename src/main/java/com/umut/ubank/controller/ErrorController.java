@@ -1,8 +1,10 @@
 package com.umut.ubank.controller;
 
 import com.umut.ubank.exception.EntityAlreadyExistException;
+import com.umut.ubank.exception.EntityIsNotActiveException;
 import com.umut.ubank.exception.NotFoundException;
 import io.swagger.v3.core.util.Json;
+import org.hibernate.PropertyValueException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -43,6 +45,22 @@ public class ErrorController {
 
     @ExceptionHandler(EntityAlreadyExistException.class)
     public ResponseEntity<HashMap> alreadyyExistError(EntityAlreadyExistException err) {
+        HashMap<String, String> error = new HashMap<>();
+        error.put("success", "false");
+        error.put("error", err.getMessage());
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(PropertyValueException.class)
+    public ResponseEntity<HashMap> propertyValueException(PropertyValueException err) {
+        HashMap<String, String> error = new HashMap<>();
+        error.put("success", "false");
+        error.put("error", err.getMessage());
+        return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EntityIsNotActiveException.class)
+    public ResponseEntity<HashMap> isNotActive(EntityIsNotActiveException err) {
         HashMap<String, String> error = new HashMap<>();
         error.put("success", "false");
         error.put("error", err.getMessage());

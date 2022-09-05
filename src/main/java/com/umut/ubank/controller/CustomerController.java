@@ -1,6 +1,5 @@
 package com.umut.ubank.controller;
 
-import com.umut.ubank.exception.NotFoundException;
 import com.umut.ubank.model.Account;
 import com.umut.ubank.model.Address;
 import com.umut.ubank.model.Customer;
@@ -48,14 +47,24 @@ public class CustomerController {
         return new ResponseEntity(OK);
     }
 
-    @PostMapping("/create-address/{id}")
+    @PostMapping("/{id}/create-address")
     public ResponseEntity<CustomerDto> addAddressToCustomer(@PathVariable Long id, @RequestBody Address address) {
         return new ResponseEntity(this.customerService.addAddressToCustomer(id, address),CREATED);
     }
 
-    @PostMapping("/create-account/{id}")
+    @PostMapping("/{id}/create-account")
     public ResponseEntity<CustomerDto> addAccountToCustomer(@PathVariable Long id, @RequestBody Account account) {
         return new ResponseEntity(this.customerService.addAccountToCustomer(id, account), CREATED);
+    }
+
+    @GetMapping("/{id}/addresses")
+    public ResponseEntity<List<Address>> getCustomersAddresses(@PathVariable Long id) {
+        return new ResponseEntity(this.customerService.getCustomersAllAddresses(id), OK);
+    }
+
+    @GetMapping("/{id}/total-amount")
+    public ResponseEntity<Integer> getCustomersAmount(@PathVariable Long id) {
+        return new ResponseEntity(this.customerService.getCustomersAllAmount(id), OK);
     }
 
 }
