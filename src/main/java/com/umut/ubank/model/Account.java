@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Account extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID account_id;
+    private Long account_id;
 
     @Column(nullable = false)
     private BigInteger amount;
@@ -21,8 +21,10 @@ public class Account extends BaseEntity {
     @Column(nullable = false)
     private Bank bank;
 
+    private Boolean isActive = Boolean.TRUE;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "cust_id")
     @JsonIgnore
     private Customer customer;
 }

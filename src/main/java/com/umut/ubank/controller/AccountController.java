@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
@@ -26,7 +25,7 @@ public class AccountController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Account> getAccount(@PathVariable UUID id) {
+    public ResponseEntity<Account> getAccount(@PathVariable Long id) {
         return new ResponseEntity(accountService.getAccountById(id), OK);
     }
 
@@ -36,13 +35,13 @@ public class AccountController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAccount(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteAccount(@PathVariable Long id) {
         accountService.deleteAccountById(id);
         return new ResponseEntity(OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Account> updateAccount(@PathVariable UUID id, @RequestBody Account account) {
+    public ResponseEntity<Account> updateAccount(@PathVariable Long id, @RequestBody Account account) {
         return new ResponseEntity(accountService.updateAccount(id, account), CREATED);
     }
 

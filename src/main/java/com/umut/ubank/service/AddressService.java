@@ -10,11 +10,11 @@ import java.util.UUID;
 public interface AddressService {
     List<Address> getAllAddresses();
 
-    Address getAddressById(UUID id);
+    Address getAddressById(Long id);
 
-    Address createAddress(Address address);
+    Address updateAddress(Long id, Address address);
 
-    Address updateAddress(UUID id, Address address);
+    void deleteAddress(Long id);
 
-    void deleteAddress(UUID id);
+    Address findById(Long id);
 }

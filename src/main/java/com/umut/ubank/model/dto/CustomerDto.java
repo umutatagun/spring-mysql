@@ -8,14 +8,13 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 @Data
 public class CustomerDto extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -24,9 +23,10 @@ public class CustomerDto extends BaseEntity {
     private String name;
     private String surname;
     private Date dateOfBirth;
+    private Boolean isActive;
 
-    private Set<Address> addresses;
+    private List<Address> addresses;
 
-    private Set<Account> accounts;
+    private List<Account> accounts;
 
 }

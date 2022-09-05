@@ -1,30 +1,26 @@
 version: '3.1'
 services:
   app:
-    container_name: app
+    container_name: ubank_app
     image: ubank
     depends_on:
-      - mysqldb
-    build: .
+      - db
+    build:
+      context: .
     ports:
       - "8080:8090"
-    command: mvn clean spring-boot:run
-    links:
-      - mysqldb
     environment:
-      DB_SERVER: mysqldb
-      MYSQL_DB: ubank
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 123
-      MYSQL_PORT: 3306
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/compose-postgres
+      - SPRING_DATASOURCE_USERNAME=compose-postgres
+      - SPRING_DATASOURCE_PASSWORD=compose-postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
-  mysqldb:
-    container_name: mysqldb
-    image: mysql/mysql-server:5.7
-    volumes:
-      - /Users/umutatagun/Desktop/db:/var/lib/mysql
-    ports:
-      - "3307:3306"
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
     environment:
-      - MYSQL_ROOT_PASSWORD=123
-      - MYSQL_DATABASE=ubank
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+      - APP_DB_NAME=ubank
+    ports:
+      - 5433:5432

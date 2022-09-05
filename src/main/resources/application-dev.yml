@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/ubank
+    username: root
+    password: 123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+server:
+  port: 8081

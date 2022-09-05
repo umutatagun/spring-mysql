@@ -12,14 +12,14 @@ import java.util.Date;
 @Data
 public class BaseEntity implements Serializable {
     @CreatedDate
-    private Date createdDate;
+    private Date createdDate = new Date();
 
     @CreatedBy
-    private String createdBy;
+    private String createdBy = "Admin";
 
     @LastModifiedDate
-    private Date LastModifiedDate;
+    private Date LastModifiedDate = new Date();
 
     @LastModifiedBy
-    private String lastModifiedBy;
+    private String lastModifiedBy = "Admin";
 }
